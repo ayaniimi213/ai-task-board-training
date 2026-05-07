@@ -1,23 +1,48 @@
-<select id="group-selector">
-    <option value="">グループを選択してください</option>
-    <option value="group01">Group 01</option>
-    <option value="group02">Group 02</option>
-    <option value="group03">Group 03</option>
-    <option value="group04">Group 04</option>
-    <option value="group05">Group 05</option>
-    <option value="group06">Group 06</option>
-    <option value="group07">Group 07</option>
-    <option value="group08">Group 08</option>
-    <option value="group09">Group 09</option>
-    <option value="group10">Group 10</option>
-    <option value="group11">Group 11</option>
-    <option value="group12">Group 12</option>
-    <option value="group13">Group 13</option>
-    <option value="group14">Group 14</option>
-    <option value="group15">Group 15</option>
-    <option value="group16">Group 16</option>
-    <option value="group17">Group 17</option>
-    <option value="group18">Group 18</option>
-    <option value="group19">Group 19</option>
-    <option value="group20">Group 20</option>
-</select>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>グループToDoボード</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>ToDoボード</h1>
+        <div class="selector-container">
+            <label for="group-selector">グループ選択:</label>
+            <select id="group-selector">
+                <option value="">選択してください</option>
+                <!-- Pythonスクリプトで20番まで自動生成するか、以下のように手動で並べます -->
+                <option value="group01">Group 01</option><option value="group02">Group 02</option>
+                <option value="group03">Group 03</option><option value="group04">Group 04</option>
+                <option value="group05">Group 05</option><option value="group06">Group 06</option>
+                <option value="group07">Group 07</option><option value="group08">Group 08</option>
+                <option value="group09">Group 09</option><option value="group10">Group 10</option>
+                <option value="group11">Group 11</option><option value="group12">Group 12</option>
+                <option value="group13">Group 13</option><option value="group14">Group 14</option>
+                <option value="group15">Group 15</option><option value="group16">Group 16</option>
+                <option value="group17">Group 17</option><option value="group18">Group 18</option>
+                <option value="group19">Group 19</option><option value="group20">Group 20</option>
+            </select>
+        </div>
+    </header>
+
+    <main id="app-content" class="hidden">
+        <section class="event-info">
+            <h2 id="display-group-name">---</h2>
+            <div class="countdown">
+                <span id="display-event-name">イベント</span>まで
+                あと <span id="days-remaining">?</span> 日
+            </div>
+        </section>
+
+        <section class="task-section">
+            <h3>タスク一覧</h3>
+            <div id="task-list"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
