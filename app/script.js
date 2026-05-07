@@ -12,10 +12,11 @@ groupSelector.addEventListener('change', (e) => {
 
 async function loadGroupData(groupId) {
     try {
-        // config.json と tasks.json を並行して取得
+        // キャッシュを避けるためにタイムスタンプを付与
+        const ts = new Date().getTime();
         const [configRes, tasksRes] = await Promise.all([
-            fetch(`../groups/${groupId}/config.json`),
-            fetch(`../groups/${groupId}/tasks.json`)
+            fetch(`../groups/${groupId}/config.json?t=${ts}`),
+            fetch(`../groups/${groupId}/tasks.json?t=${ts}`)
         ]);
 
         const config = await configRes.json();
@@ -24,33 +25,28 @@ async function loadGroupData(groupId) {
         renderUI(config, tasks);
         appContent.classList.remove('hidden');
     } catch (error) {
-        alert('データの読み込みに失敗しました。ファイルが存在するか確認してください。');
+        alert('データの読み込みに失敗しました。');
         console.error(error);
     }
 }
 
 function renderUI(config, tasks) {
-    // ヘッダー情報の更新
     document.getElementById('display-group-name').textContent = config.groupName;
     document.getElementById('display-event-name').textContent = config.eventName;
 
-    // 残り日数の計算
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const eventDate = new Date(config.eventDate);
-    const diffTime = eventDate - today;
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    const diffDays = Math.ceil((eventDate - today) / (1000 * 60 * 60 * 24));
     document.getElementById('days-remaining').textContent = diffDays;
 
-    // タスク一覧の更新
     const taskList = document.getElementById('task-list');
-    taskList.innerHTML = ''; // 一旦空にする
+    taskList.innerHTML = '';
 
     tasks.forEach(task => {
         const card = document.createElement('div');
         card.className = 'task-card';
         card.setAttribute('data-status', task.status);
-
         card.innerHTML = `
             <div class="task-header">
                 <div class="task-title">${task.title}</div>
