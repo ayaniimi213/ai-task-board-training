@@ -1,0 +1,24 @@
+groupXX：tasks.json または improvement_ideas.md を編集する
+## やること
+
+自分のグループフォルダにあるファイルを編集し、Pull Requestを作成してください。
+
+## 編集するファイル
+
+基本的には、次のどちらかを編集してください。
+
+- groups/groupXX/tasks.json
+- groups/groupXX/improvement_ideas.md
+
+## 確認するファイル
+
+次のファイルは、表示内容を確認するために見ます。
+基本的に編集しません。
+
+- groups/groupXX/config.json
+
+## 完了条件
+
+- tasks.json または improvement_ideas.md に小さな変更を1つ以上行う
+- Pull Requestを1つ作る
+- 他の人のPull Requestにコメントする
